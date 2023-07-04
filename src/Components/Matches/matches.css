@@ -1,0 +1,25 @@
+.Matches{
+    height: 90vh;
+    margin: 0 auto;
+    position: relative;
+   
+}
+.matchesBody{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 450px;
+
+}
+.candle{
+    flex-wrap: wrap;
+    cursor: pointer;
+    font-size: 40px;
+    text-align: center;
+    margin: 0 5px;
+}
+.candle.selected{
+color: green;
+}
