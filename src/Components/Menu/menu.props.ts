@@ -2,5 +2,7 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 export interface MenuProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     setMatchesLength: any,
-    matchesLength: number
+    matchesLength: number,
+    isUserTurn: boolean,
+    setIsUserTurn: any
 }

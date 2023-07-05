@@ -1,6 +1,11 @@
 .Menu{
 padding: 10px 0 0 0;
 }
+.menuBody{
+    display: flex;
+    justify-content: space-between;
+
+}
 .settingsNumber{
 background-image: url("./menu_button.png");
 background-size: 180px 60px;
@@ -12,7 +17,7 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-input{
+.lenghtSettings{
     width: 180px;
     height: 60px;
     text-align: center;
@@ -42,4 +47,61 @@ width: 32px;
 height:32px ;
 top: 10px;
 left: 188px;
+}
+.settingsMode{
+    background-image: url("./menu_button.png");
+background-size: 180px 60px;
+width: 180px;
+height: 60px;
+position: relative;
+}
+.modeSettings{
+    width: 180px;
+    height: 60px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-family: 'Lacquer', cursive;
+font-size: 30px;
+color: #727272;
+}
+.arrowLeftMode{
+    border: none;
+
+    background-image: url("./arrow.svg");
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    width: 32px;
+    height:32px ;
+    transform: rotate(180deg);
+    position: absolute;
+    top: 10px;
+    left: -40px;
+
+}
+button{
+    background: transparent;
+}
+.arrowRightMode{
+    border: none;
+    position: absolute;
+    background-image: url("./arrow.svg");
+background-repeat: no-repeat;
+background-size: 32px 32px;
+width: 32px;
+height:32px ;
+top: 10px;
+left: 188px;
+}
+.arrowRightModeDisable{
+    border: none;
+    position: absolute;
+    background-image: url("./arrow.svg");
+background-repeat: no-repeat;
+background-size: 32px 32px;
+width: 32px;
+height:32px ;
+top: 10px;
+left: 188px;
+opacity: 0.4;
 }

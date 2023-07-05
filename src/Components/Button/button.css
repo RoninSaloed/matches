@@ -12,7 +12,25 @@ justify-content: center;
 width: 250px;
 height: 90px;
 }
+.buttonDisable{
+    cursor: pointer;
+    width: 250px;
+height: 90px;
+ background: transparent;
+ border: none;
+ display: flex;
+ justify-content: center;
+ align-items: flex-start;
+ font-family: 'Lacquer', cursive;
+ font-size: 40px;
+ color: #FF0000;
+opacity: 0.4; 
+transition: 1s;
+ 
+ 
+}
 .buttonActive{
+    opacity: 1;
     cursor: pointer;
     width: 250px;
 height: 90px;

@@ -15,7 +15,7 @@ function App() {
   const [isUserTurn, setIsUserTurn] = useState(false);
   const maxSelected = 3;
   const minSelected = 1
-  const [matchesLength, setMatchesLength] = useState<number>(25);
+  const [matchesLength, setMatchesLength] = useState<number>((JSON.parse(localStorage.getItem("lenght") || localStorage.lenght || 25)))
   const [matches, setMatches] = useState<number[]>(Array.from({ length: matchesLength }, (_, index) => index));
 
   const [selected, setSelected] = useState<number[]>([]);
@@ -111,22 +111,21 @@ function App() {
   }, [selected]);
 
   useEffect(() => {
-
-
-
   }, [matches]);
-
+  useEffect(() => {
+    localStorage.setItem("lenght", JSON.stringify(matchesLength))
+  }, [matchesLength])
   return (
     <div className="App">
       <div className='container'>
-        <Menu setMatchesLength={setMatchesLength} matchesLength={matchesLength} />
+        <Menu setMatchesLength={setMatchesLength} matchesLength={matchesLength} isUserTurn={isUserTurn} setIsUserTurn={setIsUserTurn} />
         <div className='Middle'>
           <Computer computer={computer} />
           <Matches user={user} matches={matches} selected={selected} choiceCandle={choiceUser} />
           <User user={user} />
         </div>
 
-        <Button transferToUser={turnUser} />
+        <Button selected={selected} transferToUser={turnUser} matches={matches} />
       </div>
     </div>
   );
