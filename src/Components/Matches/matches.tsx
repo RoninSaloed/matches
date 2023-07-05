@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react"
 import "./matches.css"
 import { MatchesProps } from "./matches.props"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faHippo } from '@fortawesome/free-solid-svg-icons'
+
 
 
 
 export const Matches = ({ matches, selected, choiceCandle, user }: MatchesProps): JSX.Element => {
-    if (matches.length === 0) {
-        if (user.length % 2 === 0 && user.length != 0) {
-            return <div>Player win</div>
+    if (matches.length == 0) {
+        if (user.length % 2 == 0) {
+            return <div className="playerWin">User win</div>
         }
-        else if (user.length % 2 === 1) {
-            return <div>Computer win</div>
-
+        else if (user.length % 2 == 1) {
+            return <div className="computerWin">Computer win</div>
         }
     }
 
@@ -26,7 +23,7 @@ export const Matches = ({ matches, selected, choiceCandle, user }: MatchesProps)
                         onClick={() => choiceCandle(index)}
                         className={`candle ${selected.includes(index) ? "selected" : ""}`}
                     >
-                        <div className="candle"><FontAwesomeIcon icon={faHippo} /></div>
+                        <span className="candle">🧨</span>
                     </div>
                 ))}
             </div>

@@ -3,49 +3,26 @@ import './App.css';
 import { Menu } from './Components/Menu/menu';
 import { Matches } from './Components/Matches/matches';
 import { Button } from './Components/Button/button';
+import { Computer } from './Components/Computer/computer';
+import { User } from './Components/User/user';
 
 
 
 
 function App() {
   const [user, setUser] = useState<number[]>([]);
-  const [computer, setComputer] = useState<number[]>([]);
-  const [turn, setTurn] = useState<boolean>(true)
+  const [computer, setComputer] = useState<any[]>([]);
+  const [isUserTurn, setIsUserTurn] = useState(false);
   const maxSelected = 3;
   const minSelected = 1
-  const [matchesLength, setMatchesLength] = useState(11);
+  const [matchesLength, setMatchesLength] = useState<number>(25);
   const [matches, setMatches] = useState<number[]>(Array.from({ length: matchesLength }, (_, index) => index));
+
   const [selected, setSelected] = useState<number[]>([]);
 
-  const turnComputer = () => {
 
-    if (matches.length <= maxSelected) {
-      setComputer((prevComputer) => [...prevComputer, ...matches]);
-      setMatches([]);
-      return;
-    }
 
-    const elementsToRemove = Math.floor(Math.random() * (maxSelected - minSelected + 1)) + minSelected;
-
-    setMatches((prevMatches) => {
-      const remainingMatches = [...prevMatches];
-      const removedElements: number[] = [];
-
-      for (let i = 0; i < elementsToRemove; i++) {
-
-        const randomIndex = Math.floor(Math.random() * remainingMatches.length);
-        const removedElement = remainingMatches.splice(randomIndex, 1)[0];
-        removedElements.push(removedElement);
-      }
-
-      if (removedElements.length > 0) {
-        setComputer((prevComputer) => [...prevComputer, ...removedElements]);
-      }
-
-      return remainingMatches;
-    });
-  }
-  const choiceCandle = (index: number) => {
+  const choiceUser = (index: number) => {
     if (selected.includes(index)) {
       setSelected((prevSelected) => prevSelected.filter((_, index) => index !== index));
     } else if (selected.length < maxSelected) {
@@ -53,16 +30,73 @@ function App() {
     }
   }
 
-  const transferToUser = () => {
+  useEffect(() => {
+    if (isUserTurn) {
+      turnComputer(matches);
+      setIsUserTurn(false);
+    }
+  }, [isUserTurn]);
+
+  const turnUser = () => {
     setUser((prevUser) => [...prevUser, ...selected]);
     setMatches((prevMatches) => prevMatches.filter((_, index) => !selected.includes(index)));
     setSelected([]);
-    if (matches.length > 0) {
-      setTimeout(turnComputer, 1500);
+
+    setIsUserTurn(true);
+  };
+  const turnComputer = (currentMatches: number[]) => {
+    console.log(currentMatches.length)
+    let randomSelectionCount = 3;
+    if (currentMatches.length > 0) {
+      if (currentMatches.length > 7) {
+        randomSelectionCount = Math.floor(Math.random() * maxSelected) + minSelected
+        console.log("5")
+
+      }
+      else if (currentMatches.length <= 7 && currentMatches.length >= 5) {
+        if (computer.length % 2 !== 0) {
+          randomSelectionCount = 3;
+        }
+        else {
+          randomSelectionCount = 1;
+        }
+        console.log("4")
+
+      }
+      else if (currentMatches.length <= 4 && currentMatches.length >= 3) {
+        if (computer.length % 2 !== 0) {
+          randomSelectionCount = 3;
+        } else {
+          randomSelectionCount = 2;
+
+        }
+        console.log("3")
+
+      }
+      else if (currentMatches.length == 2) {
+        if (computer.length % 2 !== 0) {
+          randomSelectionCount = 1;
+        } else {
+          randomSelectionCount = 2;
+        }
+        console.log("2")
+
+      } else if (currentMatches.length == 1) {
+
+        randomSelectionCount = 1;
+        console.log("1")
+      } else {
+      }
     }
-  }
-  console.log(user.length)
-  console.log(computer.length)
+    const selectedMatches = matches.slice(-randomSelectionCount).reverse();
+    setComputer((prevComputer) => [...prevComputer, ...selectedMatches]);
+    setMatches((prevMatches) => prevMatches.slice(0, -randomSelectionCount));
+
+  };
+
+
+  console.log(user, "user")
+  console.log(computer, "pc")
 
   useEffect(() => {
     setMatches((prevMatches) => {
@@ -74,22 +108,26 @@ function App() {
   }, [matchesLength]);
 
   useEffect(() => {
-
   }, [selected]);
 
   useEffect(() => {
-    if (matches.length === 0) {
-      return; // Не отрабатывать функцию turnComputer, если matches пустой
-    }
+
 
 
   }, [matches]);
 
   return (
     <div className="App">
-      <Menu setMatchesLength={setMatchesLength} matchesLength={matchesLength} />
-      <Matches user={user} matches={matches} selected={selected} choiceCandle={choiceCandle} />
-      <Button transferToUser={transferToUser} />
+      <div className='container'>
+        <Menu setMatchesLength={setMatchesLength} matchesLength={matchesLength} />
+        <div className='Middle'>
+          <Computer computer={computer} />
+          <Matches user={user} matches={matches} selected={selected} choiceCandle={choiceUser} />
+          <User user={user} />
+        </div>
+
+        <Button transferToUser={turnUser} />
+      </div>
     </div>
   );
 }

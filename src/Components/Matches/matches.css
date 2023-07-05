@@ -1,8 +1,11 @@
 .Matches{
-    height: 90vh;
+    height: 70vh;
     margin: 0 auto;
     position: relative;
-   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   width: 500px;
 }
 .matchesBody{
     display: flex;
@@ -16,10 +19,29 @@
 .candle{
     flex-wrap: wrap;
     cursor: pointer;
-    font-size: 40px;
+    font-size: 35px;
     text-align: center;
     margin: 0 5px;
+    transition: transform 0.3s ease;
+
 }
 .candle.selected{
-color: green;
+    transform: scale(1.2);
+
+}
+.computerWin{
+    font-family: 'Lacquer', cursive;
+    text-transform: uppercase;
+    font-size: 50px;
+    margin: 0 50px;
+    color:#FF0000 ;
+    text-transform: uppercase;
+}
+.playerWin{
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 40px;
+color:#FF0000 ;
+text-transform: uppercase;
+margin: 0 50px;
+
 }

@@ -1,0 +1,27 @@
+.Button{
+
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+.buttonBody{
+    background-image: url("./button.png");
+    background-repeat: no-repeat;
+    background-size: 250px 90px;
+width: 250px;
+height: 90px;
+}
+.buttonActive{
+    cursor: pointer;
+    width: 250px;
+height: 90px;
+ background: transparent;
+ border: none;
+ display: flex;
+ justify-content: center;
+ align-items: flex-start;
+ font-family: 'Lacquer', cursive;
+ font-size: 40px;
+ color: #FF0000;
+}

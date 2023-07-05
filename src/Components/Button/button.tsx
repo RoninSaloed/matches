@@ -10,7 +10,10 @@ export const Button = ({ transferToUser }: ButtonProps): JSX.Element => {
 
     return (
         <div className="Button">
-            <button onClick={transferToUser}>Finish try</button>
+            <div className="buttonBody">
+                <button className="buttonActive" onClick={transferToUser}>Finish turn</button>
+
+            </div>
         </div>
     )
 }

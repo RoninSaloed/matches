@@ -1,0 +1,19 @@
+.user{
+width: 220px    ;
+height: 200px;
+}
+.userImg{
+    background-image: url("./user.png");
+    background-repeat: no-repeat;
+    background-size:200px 200px ;
+    width: 200px;
+    height: 200px;
+    margin: 44px 0 0 0 ;
+}
+.userScore{
+    text-align: center;
+    text-align: center;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 30px;
+    color: #FF0000;
+}

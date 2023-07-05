@@ -1,0 +1,17 @@
+.Computer{
+width: 250px;
+height: 200px;
+}
+.computerImg{
+    background-image: url("./pc.png");
+    background-repeat: no-repeat;
+    background-size:225px 200px ;
+    width: 230px;
+height: 200px;
+}
+.computerScore{
+    text-align: center;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 30px;
+    color: #FF0000;
+}
