@@ -37,6 +37,7 @@ transform: rotate(180deg);
 position: absolute;
 top: 10px;
 left: -40px;
+border: none;
 }
 .arrowRight{
     position: absolute;
@@ -47,6 +48,8 @@ width: 32px;
 height:32px ;
 top: 10px;
 left: 188px;
+border: none;
+
 }
 .settingsMode{
     background-image: url("./menu_button.png");

@@ -4,5 +4,7 @@ export interface MenuProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivEleme
     setMatchesLength: any,
     matchesLength: number,
     isUserTurn: boolean,
-    setIsUserTurn: any
+    setIsUserTurn: any,
+    computer: number[],
+    user: number[]
 }

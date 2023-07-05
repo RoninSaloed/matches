@@ -118,7 +118,7 @@ function App() {
   return (
     <div className="App">
       <div className='container'>
-        <Menu setMatchesLength={setMatchesLength} matchesLength={matchesLength} isUserTurn={isUserTurn} setIsUserTurn={setIsUserTurn} />
+        <Menu setMatchesLength={setMatchesLength} matchesLength={matchesLength} isUserTurn={isUserTurn} setIsUserTurn={setIsUserTurn} computer={computer} user={user} />
         <div className='Middle'>
           <Computer computer={computer} />
           <Matches user={user} matches={matches} selected={selected} choiceCandle={choiceUser} />

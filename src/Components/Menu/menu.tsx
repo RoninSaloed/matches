@@ -5,11 +5,12 @@ import { MenuProps } from "./menu.props"
 
 
 
-export const Menu = ({ setMatchesLength, matchesLength, isUserTurn, setIsUserTurn }: MenuProps): JSX.Element => {
+export const Menu = ({ setMatchesLength, matchesLength, isUserTurn, setIsUserTurn, computer, user }: MenuProps): JSX.Element => {
     const [currentPlayer, setCurrentPlayer] = useState<boolean>(false)
     const [nameCurrent, setNameCurrent] = useState<string>("user")
     const [buttonDisableComputer, setButtonDisableComputer] = useState<boolean>(false)
     const [buttonDisableUser, setButtonDisableUser] = useState<boolean>(true)
+    const [lengthDisable, setLengthDisable] = useState<boolean>(false)
 
     const handleMatchesLengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
@@ -24,10 +25,11 @@ export const Menu = ({ setMatchesLength, matchesLength, isUserTurn, setIsUserTur
 
     };
     const lenghtDecrease = () => {
-        let minLenght = 13
+        let minLenght = 16
         if (matchesLength >= minLenght) {
             setMatchesLength((matchesLength: any) => matchesLength - 2);
         }
+
     };
     const modeTurnPc = () => {
         setCurrentPlayer(true)
@@ -52,16 +54,25 @@ export const Menu = ({ setMatchesLength, matchesLength, isUserTurn, setIsUserTur
             setButtonDisableComputer(false)
         }
     }, [currentPlayer])
-
+    useEffect(() => {
+        if (computer.length != 0) {
+            setLengthDisable(true)
+        }
+    }, [computer])
+    useEffect(() => {
+        if (user.length != 0) {
+            setLengthDisable(true)
+        }
+    }, [user])
     return (
         <div className="Menu">
             <div className="menuBody">
 
                 <div className="settingsNumber">
-                    <div className="arrowLeft" onClick={lenghtDecrease}></div>
+                    <button disabled={lengthDisable} className="arrowLeft" onClick={lenghtDecrease}></button>
 
                     <input type="number" className="lenghtSettings" readOnly max={51} min={11} value={matchesLength} onChange={handleMatchesLengthChange} />
-                    <div className="arrowRight" onClick={lenghtIncrease}></div>
+                    <button disabled={lengthDisable} className="arrowRight" onClick={lenghtIncrease}></button>
 
                 </div>
                 <div className="settingsMode">
